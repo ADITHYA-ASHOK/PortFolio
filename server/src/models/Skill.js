@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const skillSchema = new mongoose.Schema({
   category: {
     type: String,
-    enum: ['Programming', 'Frontend', 'Backend', 'Database', 'Tools'],
+    enum: ['Programming', 'Frontend', 'Backend', 'Database', 'Tools', 'Concepts'],
     required: true,
   },
   name: { type: String, required: true },

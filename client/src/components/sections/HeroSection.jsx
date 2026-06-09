@@ -19,7 +19,7 @@ export default function HeroSection() {
 
   useEffect(() => {
     // Fetch active resume
-    fetch('http://localhost:5000/api/resume/active')
+    fetch('/api/resume/active')
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('No active resume');
@@ -40,6 +40,7 @@ export default function HeroSection() {
     }, heroRef);
     return () => ctx.revert();
   }, []);
+
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -74,19 +75,10 @@ export default function HeroSection() {
 
           {/* Content */}
           <div className="text-center lg:text-left flex-1">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-secondary font-medium mb-3 tracking-wider uppercase text-sm"
-            >
-              Welcome to my universe
-            </motion.p>
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
+              transition={{ delay: 0.5 }}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-4 leading-tight"
             >
               Hi, I&apos;m{' '}
@@ -96,7 +88,7 @@ export default function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
+              transition={{ delay: 0.7 }}
               className="text-xl sm:text-2xl lg:text-3xl font-medium text-text-secondary mb-4 h-10"
             >
               <TypeAnimation
@@ -122,7 +114,7 @@ export default function HeroSection() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1 }}
+              transition={{ delay: 0.9 }}
               className="text-text-secondary text-base sm:text-lg max-w-xl mb-8 leading-relaxed mx-auto lg:mx-0"
             >
               Building innovative software solutions and transforming ideas into 
@@ -133,24 +125,24 @@ export default function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3 }}
-              className="flex flex-wrap gap-3 justify-center lg:justify-start mb-8"
+              transition={{ delay: 1.1 }}
+              className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10"
             >
               {resumeUrl ? (
                 <>
-                  <AnimatedButton href={resumeUrl} target="_blank" rel="noopener noreferrer">
+                  <AnimatedButton href={resumeUrl} target="_blank" rel="noopener noreferrer" className="px-7 py-3.5 text-base">
                     <FaDownload /> View Resume
                   </AnimatedButton>
-                  <AnimatedButton href={resumeUrl} download variant="secondary">
+                  <AnimatedButton href={resumeUrl} download variant="secondary" className="px-7 py-3.5 text-base">
                     <FaDownload /> Download PDF
                   </AnimatedButton>
                 </>
               ) : (
-                <AnimatedButton href="/resume.pdf" download>
+                <AnimatedButton href="/resume.pdf" download className="px-7 py-3.5 text-base">
                   <FaDownload /> Download Resume
                 </AnimatedButton>
               )}
-              <AnimatedButton variant="accent" onClick={scrollToContact}>
+              <AnimatedButton variant="accent" onClick={scrollToContact} className="px-7 py-3.5 text-base">
                 <FaHandshake /> Hire Me
               </AnimatedButton>
             </motion.div>

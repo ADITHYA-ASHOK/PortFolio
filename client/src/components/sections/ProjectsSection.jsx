@@ -15,7 +15,7 @@ const projects = [
     technologies: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Firebase', 'REST APIs', 'AI Verification'],
     github: 'https://github.com/ADITHYA-ASHOK/MicroAlert.git',
     live: '',
-    image: '',
+    image: '/projects/microalert.png',
     features: [
       'Geo-Tagged Reporting',
       'Real-Time Alerts',
@@ -33,7 +33,7 @@ const projects = [
     technologies: ['React', 'Node.js', 'MongoDB', 'Express.js', 'NASA APIs', 'Chart.js'],
     github: 'https://github.com/ADITHYASHOK/Skylytix.git',
     live: '',
-    image: '',
+    image: '/projects/skylytix.png',
     features: [
       'NASA Earth Data Integration',
       'Environmental Analytics',
@@ -51,7 +51,7 @@ const projects = [
     technologies: ['React', 'Node.js', 'MongoDB', 'Express.js'],
     github: 'https://github.com/ADITHYA-ASHOK/FindMyDonor.git',
     live: '',
-    image: '',
+    image: '/projects/findmydonor.png',
     features: [
       'Location-Based Matching',
       'Blood Group Filtering',
@@ -69,7 +69,7 @@ const projects = [
     technologies: ['C Programming', 'File Handling', 'Data Structures'],
     github: 'https://github.com/ADITHYA-ASHOK/Libmanage.git',
     live: '',
-    image: '',
+    image: '/projects/libmanage.png',
     features: [
       'Menu-Driven Interface',
       'Persistent File Storage',

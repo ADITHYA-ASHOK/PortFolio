@@ -9,8 +9,11 @@ export default function AnimatedButton({
   onClick,
   ...props
 }) {
-  const base =
-    'relative inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm overflow-hidden transition-all duration-300 cursor-pointer';
+  // Apply default padding only if the caller hasn't specified custom padding
+  const hasCustomPadding = /\bpx-\S+/.test(className) || /\bpy-\S+/.test(className);
+  const defaultPadding = hasCustomPadding ? '' : 'px-6 py-3';
+
+  const base = `relative inline-flex items-center gap-2 ${defaultPadding} rounded-xl font-semibold text-sm overflow-hidden transition-all duration-300 cursor-pointer`;
 
   const variants = {
     primary:
@@ -22,7 +25,9 @@ export default function AnimatedButton({
   };
 
   const Component = href ? motion.a : motion.button;
-  const linkProps = href ? { href, target: href.startsWith('http') ? '_blank' : undefined, rel: 'noopener noreferrer', download } : {};
+  const linkProps = href
+    ? { href, target: href.startsWith('http') ? '_blank' : undefined, rel: 'noopener noreferrer', download }
+    : {};
 
   return (
     <Component

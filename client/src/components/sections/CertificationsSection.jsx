@@ -16,7 +16,7 @@ export default function CertificationsSection() {
   });
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/certifications')
+    fetch('/api/certifications')
       .then(res => res.ok ? res.json() : Promise.reject())
       .then(data => {
         if (data && data.length > 0) {

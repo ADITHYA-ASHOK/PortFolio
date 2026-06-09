@@ -23,31 +23,33 @@ export default function ProjectCard({ project, index, onClick }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
 
-        {/* Overlay links */}
-        <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="w-11 h-11 rounded-full glass flex items-center justify-center text-white hover:text-primary transition-colors"
-            >
-              <FaGithub size={20} />
-            </a>
-          )}
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="w-11 h-11 rounded-full glass flex items-center justify-center text-white hover:text-secondary transition-colors"
-            >
-              <FaExternalLinkAlt size={16} />
-            </a>
-          )}
-        </div>
+        {/* Overlay links — only shown when links exist */}
+        {(project.github || project.live) && (
+          <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="w-11 h-11 rounded-full glass flex items-center justify-center text-white hover:text-primary transition-colors"
+              >
+                <FaGithub size={20} />
+              </a>
+            )}
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="w-11 h-11 rounded-full glass flex items-center justify-center text-white hover:text-secondary transition-colors"
+              >
+                <FaExternalLinkAlt size={16} />
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Content */}

@@ -24,7 +24,7 @@ export default function CertificationsDashboard() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/certifications')
+    fetch('/api/certifications')
       .then(res => res.ok ? res.json() : Promise.reject('Failed to fetch'))
       .then(data => {
         setCertifications(data.length ? data : fallbackCertifications);
@@ -47,45 +47,47 @@ export default function CertificationsDashboard() {
   const nonTechCount = certifications.filter(c => c.category === 'Non-Technical').length;
 
   return (
-    <div className="min-h-screen pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
-        <div>
-          <button 
-            onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors mb-4"
-          >
-            <FaArrowLeft /> Back to Portfolio
-          </button>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3">
-            Certificate <span className="gradient-text">Gallery</span>
-          </h1>
-          <p className="text-text-secondary">View and verify all my professional certifications and achievements.</p>
-        </div>
-
-        {/* Search & Filter Controls */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-          <div className="relative w-full sm:w-64">
-            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" />
-            <input
-              type="text"
-              placeholder="Search certificates..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-11 pr-4 py-2.5 rounded-xl bg-white/5 border border-primary/20 text-white placeholder-text-muted outline-none focus:border-primary/50 transition-colors"
-            />
+      <div className="mb-10">
+        <button
+          onClick={() => navigate('/')}
+          className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors mb-5 text-sm"
+        >
+          <FaArrowLeft /> Back to Portfolio
+        </button>
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3">
+              Certificate <span className="gradient-text">Gallery</span>
+            </h1>
+            <p className="text-text-secondary">View and verify all my professional certifications and achievements.</p>
           </div>
-          <div className="relative w-full sm:w-48">
-            <FaFilter className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" />
-            <select
-              value={activeCategory}
-              onChange={(e) => setActiveCategory(e.target.value)}
-              className="w-full pl-11 pr-4 py-2.5 rounded-xl bg-surface border border-primary/20 text-white outline-none focus:border-primary/50 transition-colors appearance-none cursor-pointer"
-            >
-              {categories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
+
+          {/* Search & Filter Controls */}
+          <div className="flex flex-col sm:flex-row gap-3 lg:w-auto w-full">
+            <div className="relative">
+              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" />
+              <input
+                type="text"
+                placeholder="Search certificates..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full sm:w-60 pl-11 pr-4 py-2.5 rounded-xl bg-white/5 border border-primary/20 text-white placeholder-text-muted outline-none focus:border-primary/50 transition-colors"
+              />
+            </div>
+            <div className="relative">
+              <FaFilter className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted" />
+              <select
+                value={activeCategory}
+                onChange={(e) => setActiveCategory(e.target.value)}
+                className="w-full sm:w-44 pl-11 pr-4 py-2.5 rounded-xl bg-surface border border-primary/20 text-white outline-none focus:border-primary/50 transition-colors appearance-none cursor-pointer"
+              >
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -174,14 +176,23 @@ export default function CertificationsDashboard() {
                       <h3 className="text-lg font-bold text-white leading-tight mb-1 group-hover:text-primary-light transition-colors line-clamp-2">{cert.title}</h3>
                       <p className="text-text-secondary text-sm font-medium mb-3">{cert.issuer}</p>
                       
-                      <div className="mt-auto flex gap-2">
+                      <div className="mt-auto flex gap-2 pt-1">
                         {fileSrc && (
-                          <a href={fileSrc} target="_blank" rel="noopener noreferrer" className="flex-1 text-center py-2 text-xs font-bold uppercase tracking-wider rounded bg-white/5 hover:bg-primary/20 text-white hover:text-primary-light transition-colors border border-white/10 hover:border-primary/30">
+                          <a
+                            href={fileSrc}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-1 text-center py-2 text-xs font-bold uppercase tracking-wider rounded-lg bg-white/5 hover:bg-primary/20 text-white hover:text-primary-light transition-colors border border-white/10 hover:border-primary/30"
+                          >
                             View
                           </a>
                         )}
                         {fileSrc && (
-                          <a href={fileSrc} download className="flex-1 text-center py-2 text-xs font-bold uppercase tracking-wider rounded bg-primary/20 hover:bg-primary/40 text-primary-light transition-colors border border-primary/30">
+                          <a
+                            href={fileSrc}
+                            download
+                            className="flex-1 text-center py-2 text-xs font-bold uppercase tracking-wider rounded-lg bg-primary/20 hover:bg-primary/40 text-primary-light transition-colors border border-primary/30"
+                          >
                             Download
                           </a>
                         )}

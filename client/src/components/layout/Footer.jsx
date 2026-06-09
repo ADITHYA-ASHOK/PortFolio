@@ -1,13 +1,10 @@
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaInstagram, FaHeart } from 'react-icons/fa';
-import { SiLeetcode, SiHackerrank } from 'react-icons/si';
+import { FaLinkedin, FaGithub, FaUsers, FaHeart } from 'react-icons/fa';
 
 const socialLinks = [
-  { icon: FaLinkedin, href: 'https://linkedin.com/in/adithyaashok', label: 'LinkedIn' },
-  { icon: FaGithub, href: 'https://github.com/adithyaashok', label: 'GitHub' },
-  { icon: SiLeetcode, href: 'https://leetcode.com/adithyaashok', label: 'LeetCode' },
-  { icon: SiHackerrank, href: 'https://hackerrank.com/adithyaashok', label: 'HackerRank' },
-  { icon: FaInstagram, href: 'https://instagram.com/adithyaashok', label: 'Instagram' },
+  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/adithya-ashok12', label: 'LinkedIn' },
+  { icon: FaGithub, href: 'https://github.com/ADITHYA-ASHOK', label: 'GitHub' },
+  { icon: FaUsers, href: 'https://mulearn.org', label: 'MuLearn' },
 ];
 
 const techStack = ['React', 'Node.js', 'MongoDB', 'Tailwind', 'Three.js', 'Framer Motion'];

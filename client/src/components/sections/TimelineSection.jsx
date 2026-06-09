@@ -42,7 +42,7 @@ const timelineData = [
     title: 'B.Tech Computer Science Engineering',
     subtitle: "St. Joseph's College of Engineering and Technology, Palai",
     description: 'Pursuing Bachelor of Technology with focus on modern software development.',
-    date: '2022 - 2026',
+    date: '2023 - 2027',
     category: 'education',
   },
 ];

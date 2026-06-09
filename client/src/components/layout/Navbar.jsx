@@ -62,7 +62,7 @@ export default function Navbar() {
           onClick={(e) => handleNavClick(e, '#hero')}
         >
           <span className="text-white">Adithya</span>
-          <span className="gradient-text">.dev</span>
+          <span className="gradient-text"> Ashok</span>
         </motion.div>
 
         {/* Desktop Nav */}

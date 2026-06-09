@@ -27,7 +27,7 @@ export default function LeadershipSection() {
   const [leadershipData, setLeadershipData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/leadership')
+    fetch('/api/leadership')
       .then((res) => (res.ok ? res.json() : Promise.reject('Failed to fetch')))
       .then((data) => {
         setLeadershipData(data.length ? data : fallbackLeadership);
@@ -49,7 +49,7 @@ export default function LeadershipSection() {
           {/* Timeline Center Line (Desktop) */}
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/50 via-secondary/50 to-transparent -translate-x-1/2 rounded-full" />
 
-          <div className="space-y-12">
+          <div className="space-y-24">
             {leadershipData.map((role, i) => {
               const isEven = i % 2 === 0;
 
