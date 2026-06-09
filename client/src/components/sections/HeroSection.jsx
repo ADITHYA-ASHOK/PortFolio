@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { FaDownload, FaEnvelope, FaLinkedin, FaGithub, FaHandshake, FaUsers } from 'react-icons/fa';
+import { FaDownload, FaLinkedin, FaGithub, FaHandshake, FaUsers } from 'react-icons/fa';
 import gsap from 'gsap';
 import AnimatedButton from '../ui/AnimatedButton';
 
@@ -18,19 +18,22 @@ export default function HeroSection() {
   const [resumeUrl, setResumeUrl] = useState('');
 
   useEffect(() => {
+    const API = import.meta.env.VITE_API_URL;
+
     // Fetch active resume
-    fetch('/api/resume/active')
+    fetch(`${API}/api/resume/active`)
       .then(res => {
         if (res.ok) return res.json();
         throw new Error('No active resume');
       })
       .then(data => {
         if (data && data.fileUrl) {
-          setResumeUrl(`http://localhost:5000${data.fileUrl}`);
+          setResumeUrl(`${API}${data.fileUrl}`);
         }
       })
       .catch(err => console.log('Resume fetch error:', err));
 
+    // GSAP animation
     const ctx = gsap.context(() => {
       gsap.fromTo(
         imageRef.current,
@@ -38,9 +41,9 @@ export default function HeroSection() {
         { scale: 1, rotation: 0, duration: 1.2, ease: 'back.out(1.7)', delay: 0.3 }
       );
     }, heroRef);
+
     return () => ctx.revert();
   }, []);
-
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -54,15 +57,15 @@ export default function HeroSection() {
     >
       <div className="max-w-7xl mx-auto w-full">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
           {/* Profile Image */}
           <motion.div className="flex-shrink-0" ref={imageRef}>
             <div className="relative">
-              {/* Glow ring */}
               <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-primary via-secondary to-accent opacity-30 blur-xl animate-pulse-glow" />
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden border-2 border-primary/40 p-1">
                 <img src="/profile.jpg" alt="Adithya Ashok" className="w-full h-full object-cover rounded-full bg-surface" />
               </div>
-              {/* Floating badge */}
+
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
@@ -75,14 +78,14 @@ export default function HeroSection() {
 
           {/* Content */}
           <div className="text-center lg:text-left flex-1">
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-4 leading-tight"
             >
-              Hi, I&apos;m{' '}
-              <span className="gradient-text">Adithya Ashok</span>
+              Hi, I&apos;m <span className="gradient-text">Adithya Ashok</span>
             </motion.h1>
 
             <motion.div
@@ -117,8 +120,7 @@ export default function HeroSection() {
               transition={{ delay: 0.9 }}
               className="text-text-secondary text-base sm:text-lg max-w-xl mb-8 leading-relaxed mx-auto lg:mx-0"
             >
-              Building innovative software solutions and transforming ideas into 
-              impactful digital products.
+              Building innovative software solutions and transforming ideas into impactful digital products.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -130,19 +132,21 @@ export default function HeroSection() {
             >
               {resumeUrl ? (
                 <>
-                  <AnimatedButton href={resumeUrl} target="_blank" rel="noopener noreferrer" className="px-7 py-3.5 text-base">
+                  <AnimatedButton href={resumeUrl} target="_blank" rel="noopener noreferrer">
                     <FaDownload /> View Resume
                   </AnimatedButton>
-                  <AnimatedButton href={resumeUrl} download variant="secondary" className="px-7 py-3.5 text-base">
+
+                  <AnimatedButton href={resumeUrl} download variant="secondary">
                     <FaDownload /> Download PDF
                   </AnimatedButton>
                 </>
               ) : (
-                <AnimatedButton href="/resume.pdf" download className="px-7 py-3.5 text-base">
+                <AnimatedButton href="/resume.pdf" download>
                   <FaDownload /> Download Resume
                 </AnimatedButton>
               )}
-              <AnimatedButton variant="accent" onClick={scrollToContact} className="px-7 py-3.5 text-base">
+
+              <AnimatedButton variant="accent" onClick={scrollToContact}>
                 <FaHandshake /> Hire Me
               </AnimatedButton>
             </motion.div>
@@ -171,6 +175,7 @@ export default function HeroSection() {
                 </motion.a>
               ))}
             </motion.div>
+
           </div>
         </div>
 
@@ -193,6 +198,7 @@ export default function HeroSection() {
             />
           </motion.div>
         </motion.div>
+
       </div>
     </section>
   );
